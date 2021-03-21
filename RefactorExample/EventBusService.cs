@@ -1,15 +1,16 @@
-﻿using System;
+﻿using RefactorExample.Interfaces;
+using System;
 
 namespace RefactorExample
 {
-    public class EventBusService
+    public class EventBusService : IEventBusService
     {
-        internal void RegisterForNotification(GeneralService generalService, EventTypes exception, Action<Exception> handleException)
+        public void RegisterForNotification(GeneralService generalService, EventTypes exception, Action<Exception> handleException)
         {
             throw new NotImplementedException();
         }
 
-        internal void UnRegisterForNotification(GeneralService generalService)
+        public void UnRegisterForNotification(GeneralService generalService)
         {
             throw new NotImplementedException();
         }

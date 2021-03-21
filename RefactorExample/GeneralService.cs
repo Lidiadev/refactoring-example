@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using Microsoft.Extensions.DependencyInjection;
 using RefactorExample.Interfaces;
 
 namespace RefactorExample
@@ -9,22 +8,20 @@ namespace RefactorExample
     {
         private readonly ILoggingService _loggingService;
         private readonly IDataService _dataService;
-        private readonly IServiceProvider _serviceProvider;
+        private readonly IEventBusService _eventBusService;
 
-        public GeneralService(ILoggingService loggingService, IDataService dataService, IServiceProvider serviceProvider)
+        public GeneralService(ILoggingService loggingService, IDataService dataService, IEventBusService eventBusService)
         {
             _loggingService = loggingService;
             _dataService = dataService;
-            _serviceProvider = serviceProvider;
+            _eventBusService = eventBusService;
 
-            var eventBusService = _serviceProvider.GetService<EventBusService>();
-            eventBusService.RegisterForNotification(this, EventTypes.Exception, HandleException);
+            _eventBusService.RegisterForNotification(this, EventTypes.Exception, HandleException);
         }
 
         public void Dispose()
         {
-            var eventBusService = _serviceProvider.GetService<EventBusService>();
-            eventBusService.UnRegisterForNotification(this);
+            _eventBusService.UnRegisterForNotification(this);
         }
 
         public void Execute(Action action)
