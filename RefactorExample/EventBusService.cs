@@ -1,4 +1,5 @@
-﻿using RefactorExample.Interfaces;
+﻿using RefactorExample.Common;
+using RefactorExample.Interfaces;
 using System;
 
 namespace RefactorExample

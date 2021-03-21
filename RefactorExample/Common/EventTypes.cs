@@ -1,4 +1,4 @@
-﻿namespace RefactorExample
+﻿namespace RefactorExample.Common
 {
     public enum EventTypes
     {
