@@ -1,15 +1,16 @@
-﻿using System;
+﻿using RefactorExample.Interfaces;
+using System;
 
 namespace RefactorExample
 {
-    public class DataService
+    public class DataService : IDataService
     {
-        internal void CreateLog(Exception exception)
+        public void CreateLog(Exception exception)
         {
             throw new NotImplementedException();
         }
 
-        internal void CreateLog(string v)
+        public void CreateLog(string messages)
         {
             throw new NotImplementedException();
         }

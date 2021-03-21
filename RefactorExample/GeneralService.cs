@@ -8,10 +8,10 @@ namespace RefactorExample
     public class GeneralService : IDisposable
     {
         private readonly ILoggingService _loggingService;
-        private readonly DataService _dataService;
+        private readonly IDataService _dataService;
         private readonly IServiceProvider _serviceProvider;
 
-        public GeneralService(ILoggingService loggingService, DataService dataService, IServiceProvider serviceProvider)
+        public GeneralService(ILoggingService loggingService, IDataService dataService, IServiceProvider serviceProvider)
         {
             _loggingService = loggingService;
             _dataService = dataService;
