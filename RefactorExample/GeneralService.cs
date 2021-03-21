@@ -13,9 +13,9 @@ namespace RefactorExample
 
         public GeneralService(ILoggingService loggingService, IDataService dataService, IEventBusService eventBusService)
         {
-            _loggingService = loggingService;
-            _dataService = dataService;
-            _eventBusService = eventBusService;
+            _loggingService = loggingService ?? throw new ArgumentNullException(nameof(ILoggingService));
+            _dataService = dataService ?? throw new ArgumentNullException(nameof(IDataService));
+            _eventBusService = eventBusService ?? throw new ArgumentNullException(nameof(IEventBusService));
 
             _eventBusService.RegisterForNotification(this, EventTypes.Exception, HandleException);
         }
