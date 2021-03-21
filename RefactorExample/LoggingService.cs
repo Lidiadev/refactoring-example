@@ -1,15 +1,16 @@
-﻿using System;
+﻿using RefactorExample.Interfaces;
+using System;
 
 namespace RefactorExample
 {
-    public class LoggingService
+    public class LoggingService : ILoggingService
     {
-        internal void LogInformation(string v)
+        public void LogInformation(string message)
         {
             throw new NotImplementedException();
         }
 
-        internal void LogException(Exception exception)
+        public void LogException(Exception exception)
         {
             throw new NotImplementedException();
         }

@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
+using RefactorExample.Interfaces;
 
 namespace RefactorExample
 {
     public class GeneralService : IDisposable
     {
-        private readonly LoggingService _loggingService;
+        private readonly ILoggingService _loggingService;
         private readonly DataService _dataService;
         private readonly IServiceProvider _serviceProvider;
 
-        public GeneralService(LoggingService loggingService, DataService dataService, IServiceProvider serviceProvider)
+        public GeneralService(ILoggingService loggingService, DataService dataService, IServiceProvider serviceProvider)
         {
             _loggingService = loggingService;
             _dataService = dataService;
@@ -28,11 +29,9 @@ namespace RefactorExample
 
         public void Execute(Action action)
         {
-            LoggingService loggingService = _serviceProvider.GetService<LoggingService>();
-
             Stopwatch watch = new Stopwatch();
             watch.Start();
-            loggingService.LogInformation("Start executing");
+            _loggingService.LogInformation("Start executing");
 
             try
             {
@@ -40,7 +39,7 @@ namespace RefactorExample
             }
             catch(Exception exception)
             {
-                loggingService.LogException(exception);
+                _loggingService.LogException(exception);
                 return;
             }
 
@@ -51,10 +50,9 @@ namespace RefactorExample
 
         private void HandleException(Exception exception)
         {
-            var loggingService = new LoggingService();
             _dataService.CreateLog(exception);
 
-            loggingService.LogInformation("Exception was logged");
+            _loggingService.LogInformation("Exception was logged");
         }
     }
 }
